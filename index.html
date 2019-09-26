@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      body {
+        margin: 0;
+      }
+
+      img {
+        width: 70vw;
+      }
+
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="tela" width="500" height="500">Sem suporte a canvas</canvas>
+    <img src="lados cubo.jpg" alt="" />
+
+    <script id="meu-vertex-shader" type="glsl">
+      attribute vec4 posicao;
+      attribute vec4 a_cor;
+      varying vec4 v_cor;
+      uniform mat4 u_matriz;
+
+      void main() {
+        gl_Position = u_matriz * posicao;
+        v_cor = a_cor;
+      }
+    </script>
+    <script id="meu-fragment-shader" type="glsl">
+      precision mediump float;
+      varying vec4 v_cor;
+      void main() {
+        gl_FragColor = v_cor;
+      }
+    </script>
+
+    <script src="Render.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
